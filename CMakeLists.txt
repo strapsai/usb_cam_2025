@@ -38,6 +38,20 @@ add_library(${PROJECT_NAME} SHARED
   src/usb_cam.cpp
 )
 
+add_executable(usbreset src/usbreset.cpp)
+add_executable(usb_reset_udev src/usb_reset_udev.cpp)
+target_link_libraries(usb_reset_udev udev)
+# Install the executable
+install(TARGETS usbreset
+  DESTINATION lib/${PROJECT_NAME}
+)
+
+
+# Install the executable
+install(TARGETS usb_reset_udev
+  DESTINATION lib/${PROJECT_NAME}
+)
+
 target_include_directories(${PROJECT_NAME} PUBLIC
   "include"
   ${OpenCV_INCLUDE_DIRS}
